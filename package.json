@@ -1,15 +1,18 @@
 {
-    "scripts": {
-        "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
-        "start-backend": "cd Backend && nodemon app.js",
-        "start-frontend": "cd frontend && npm start",
-        "install": "cd backend && npm install && cd ../Frontend && npm install"
-    },
-    "devDependencies": {
-        "concurrently": "^8.0.1",
-        "nodemon": "^2.0.22"
-    },
-    "env": {
-        "NODE_ENV": "development"
-    }
+  "scripts": {
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
+    "start-backend": "cd Backend && npm run dev",
+    "start-frontend": "cd Frontend && npm start",
+    "build": "npm run build-backend && npm run build-frontend",
+    "build-backend": "cd Backend && npm run build",
+    "build-frontend": "cd Frontend && npm run build",
+    "install": "cd Backend && npm install && cd ../Frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.0"
+  },
+  "env": {
+    "NODE_ENV": "development"
+  }
 }

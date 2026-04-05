@@ -1,0 +1,9 @@
+{
+  "name": "ai-os-mcp-server",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "@github/copilot-sdk": "^0.1.8"
+  }
+}

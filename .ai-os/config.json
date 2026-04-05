@@ -1,0 +1,10 @@
+{
+  "version": "0.2.0",
+  "installedAt": "2026-04-05T05:20:49.724Z",
+  "projectName": "MERN-Forum",
+  "primaryLanguage": "JavaScript",
+  "primaryFramework": null,
+  "frameworks": [],
+  "packageManager": "npm",
+  "hasTypeScript": false
+}

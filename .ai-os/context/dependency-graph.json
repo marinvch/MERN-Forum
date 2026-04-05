@@ -1,0 +1,385 @@
+{
+  "nodes": {
+    "Backend/app.js": {
+      "path": "Backend/app.js",
+      "imports": [
+        "Backend/routes/user.js",
+        "Backend/routes/post.js",
+        "Backend/routes/comment.js"
+      ],
+      "importedBy": [],
+      "exports": []
+    },
+    "Backend/controllers/comments.js": {
+      "path": "Backend/controllers/comments.js",
+      "imports": [
+        "Backend/models/post.js",
+        "Backend/models/comment.js",
+        "Backend/models/user.js"
+      ],
+      "importedBy": [
+        "Backend/routes/comment.js"
+      ],
+      "exports": [
+        "createComment",
+        "allComments",
+        "getComment",
+        "editComment",
+        "deleteComment",
+        "likeComment",
+        "dislikeComment"
+      ]
+    },
+    "Backend/controllers/posts.js": {
+      "path": "Backend/controllers/posts.js",
+      "imports": [
+        "Backend/models/post.js",
+        "Backend/models/user.js"
+      ],
+      "importedBy": [
+        "Backend/routes/post.js"
+      ],
+      "exports": [
+        "createPost",
+        "allPosts",
+        "getPost",
+        "editPost",
+        "deletePost",
+        "likePost",
+        "dislikePost"
+      ]
+    },
+    "Backend/controllers/users.js": {
+      "path": "Backend/controllers/users.js",
+      "imports": [
+        "Backend/models/user.js"
+      ],
+      "importedBy": [
+        "Backend/routes/user.js"
+      ],
+      "exports": [
+        "register",
+        "login",
+        "deleteUser",
+        "validToken",
+        "currentUser"
+      ]
+    },
+    "Backend/middleware/auth.js": {
+      "path": "Backend/middleware/auth.js",
+      "imports": [],
+      "importedBy": [
+        "Backend/routes/comment.js",
+        "Backend/routes/post.js",
+        "Backend/routes/user.js"
+      ],
+      "exports": [
+        "auth"
+      ]
+    },
+    "Backend/models/comment.js": {
+      "path": "Backend/models/comment.js",
+      "imports": [],
+      "importedBy": [
+        "Backend/controllers/comments.js"
+      ],
+      "exports": []
+    },
+    "Backend/models/post.js": {
+      "path": "Backend/models/post.js",
+      "imports": [],
+      "importedBy": [
+        "Backend/controllers/comments.js",
+        "Backend/controllers/posts.js"
+      ],
+      "exports": []
+    },
+    "Backend/models/user.js": {
+      "path": "Backend/models/user.js",
+      "imports": [],
+      "importedBy": [
+        "Backend/controllers/comments.js",
+        "Backend/controllers/posts.js",
+        "Backend/controllers/users.js"
+      ],
+      "exports": []
+    },
+    "Backend/routes/comment.js": {
+      "path": "Backend/routes/comment.js",
+      "imports": [
+        "Backend/middleware/auth.js",
+        "Backend/controllers/comments.js"
+      ],
+      "importedBy": [
+        "Backend/app.js"
+      ],
+      "exports": []
+    },
+    "Backend/routes/post.js": {
+      "path": "Backend/routes/post.js",
+      "imports": [
+        "Backend/middleware/auth.js",
+        "Backend/controllers/posts.js"
+      ],
+      "importedBy": [
+        "Backend/app.js"
+      ],
+      "exports": []
+    },
+    "Backend/routes/user.js": {
+      "path": "Backend/routes/user.js",
+      "imports": [
+        "Backend/middleware/auth.js",
+        "Backend/controllers/users.js"
+      ],
+      "importedBy": [
+        "Backend/app.js"
+      ],
+      "exports": []
+    },
+    "Frontend/src/App.js": {
+      "path": "Frontend/src/App.js",
+      "imports": [
+        "Frontend/src/pages/authPage.jsx"
+      ],
+      "importedBy": [
+        "Frontend/src/index.js"
+      ],
+      "exports": [
+        "App"
+      ]
+    },
+    "Frontend/src/Components/Auth/Login.jsx": {
+      "path": "Frontend/src/Components/Auth/Login.jsx",
+      "imports": [
+        "Frontend/src/redux/services/authService.js",
+        "Frontend/src/redux/features/authSlice.js"
+      ],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Auth/Register.jsx": {
+      "path": "Frontend/src/Components/Auth/Register.jsx",
+      "imports": [
+        "Frontend/src/redux/features/authSlice.js",
+        "Frontend/src/redux/services/authService.js"
+      ],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Comment/CreateComment.js": {
+      "path": "Frontend/src/Components/Comment/CreateComment.js",
+      "imports": [],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Form/Form.js": {
+      "path": "Frontend/src/Components/Form/Form.js",
+      "imports": [],
+      "importedBy": [],
+      "exports": [
+        "Form"
+      ]
+    },
+    "Frontend/src/Components/Layout/Footer.jsx": {
+      "path": "Frontend/src/Components/Layout/Footer.jsx",
+      "imports": [],
+      "importedBy": [
+        "Frontend/src/Components/Layout/index.jsx"
+      ],
+      "exports": []
+    },
+    "Frontend/src/Components/Layout/Header.jsx": {
+      "path": "Frontend/src/Components/Layout/Header.jsx",
+      "imports": [
+        "Frontend/src/redux/features/authSlice.js"
+      ],
+      "importedBy": [
+        "Frontend/src/Components/Layout/index.jsx"
+      ],
+      "exports": []
+    },
+    "Frontend/src/Components/Layout/index.jsx": {
+      "path": "Frontend/src/Components/Layout/index.jsx",
+      "imports": [
+        "Frontend/src/Components/Layout/Header.jsx",
+        "Frontend/src/Components/Layout/Footer.jsx"
+      ],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Layout/Navigation.jsx": {
+      "path": "Frontend/src/Components/Layout/Navigation.jsx",
+      "imports": [],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Post/CreatePost.js": {
+      "path": "Frontend/src/Components/Post/CreatePost.js",
+      "imports": [],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Post/EditPost.js": {
+      "path": "Frontend/src/Components/Post/EditPost.js",
+      "imports": [],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Post/PostDetails.js": {
+      "path": "Frontend/src/Components/Post/PostDetails.js",
+      "imports": [
+        "Frontend/src/redux/features/postActions.js"
+      ],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Post/Posts.js": {
+      "path": "Frontend/src/Components/Post/Posts.js",
+      "imports": [
+        "Frontend/src/redux/features/postActions.js",
+        "Frontend/src/Components/Spinner/Spinner.jsx"
+      ],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Profile/Profile.jsx": {
+      "path": "Frontend/src/Components/Profile/Profile.jsx",
+      "imports": [],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Profile/User.jsx": {
+      "path": "Frontend/src/Components/Profile/User.jsx",
+      "imports": [],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/Components/Spinner/Spinner.jsx": {
+      "path": "Frontend/src/Components/Spinner/Spinner.jsx",
+      "imports": [],
+      "importedBy": [
+        "Frontend/src/Components/Post/Posts.js"
+      ],
+      "exports": [
+        "Loader"
+      ]
+    },
+    "Frontend/src/index.js": {
+      "path": "Frontend/src/index.js",
+      "imports": [
+        "Frontend/src/App.js",
+        "Frontend/src/redux/store.js"
+      ],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/pages/authPage.jsx": {
+      "path": "Frontend/src/pages/authPage.jsx",
+      "imports": [],
+      "importedBy": [
+        "Frontend/src/App.js"
+      ],
+      "exports": []
+    },
+    "Frontend/src/pages/registerPage.jsx": {
+      "path": "Frontend/src/pages/registerPage.jsx",
+      "imports": [],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/redux/features/authSlice.js": {
+      "path": "Frontend/src/redux/features/authSlice.js",
+      "imports": [],
+      "importedBy": [
+        "Frontend/src/Components/Auth/Login.jsx",
+        "Frontend/src/Components/Auth/Register.jsx",
+        "Frontend/src/Components/Layout/Header.jsx",
+        "Frontend/src/redux/store.js"
+      ],
+      "exports": []
+    },
+    "Frontend/src/redux/features/errorAurhSlice.js": {
+      "path": "Frontend/src/redux/features/errorAurhSlice.js",
+      "imports": [],
+      "importedBy": [
+        "Frontend/src/redux/store.js"
+      ],
+      "exports": []
+    },
+    "Frontend/src/redux/features/postActions.js": {
+      "path": "Frontend/src/redux/features/postActions.js",
+      "imports": [
+        "Frontend/src/redux/services/postService.js"
+      ],
+      "importedBy": [
+        "Frontend/src/Components/Post/PostDetails.js",
+        "Frontend/src/Components/Post/Posts.js"
+      ],
+      "exports": [
+        "fetchPosts",
+        "getPosts",
+        "viewCurrentPost"
+      ]
+    },
+    "Frontend/src/redux/features/postsSlice.js": {
+      "path": "Frontend/src/redux/features/postsSlice.js",
+      "imports": [],
+      "importedBy": [
+        "Frontend/src/redux/store.js"
+      ],
+      "exports": []
+    },
+    "Frontend/src/redux/selectors/authSelector.js": {
+      "path": "Frontend/src/redux/selectors/authSelector.js",
+      "imports": [],
+      "importedBy": [],
+      "exports": []
+    },
+    "Frontend/src/redux/selectors/postSelector.js": {
+      "path": "Frontend/src/redux/selectors/postSelector.js",
+      "imports": [],
+      "importedBy": [],
+      "exports": [
+        "allPosts"
+      ]
+    },
+    "Frontend/src/redux/services/authService.js": {
+      "path": "Frontend/src/redux/services/authService.js",
+      "imports": [],
+      "importedBy": [
+        "Frontend/src/Components/Auth/Login.jsx",
+        "Frontend/src/Components/Auth/Register.jsx"
+      ],
+      "exports": [
+        "loginUser",
+        "registerUser"
+      ]
+    },
+    "Frontend/src/redux/services/postService.js": {
+      "path": "Frontend/src/redux/services/postService.js",
+      "imports": [],
+      "importedBy": [
+        "Frontend/src/redux/features/postActions.js"
+      ],
+      "exports": [
+        "getAllPosts",
+        "getPost"
+      ]
+    },
+    "Frontend/src/redux/store.js": {
+      "path": "Frontend/src/redux/store.js",
+      "imports": [
+        "Frontend/src/redux/features/authSlice.js",
+        "Frontend/src/redux/features/errorAurhSlice.js",
+        "Frontend/src/redux/features/postsSlice.js"
+      ],
+      "importedBy": [
+        "Frontend/src/index.js"
+      ],
+      "exports": []
+    }
+  },
+  "generatedAt": "2026-04-05T05:20:49.723Z",
+  "fileCount": 39
+}
