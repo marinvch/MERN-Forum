@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
 import Post from "../models/post.js";
 import Comment from "../models/comment.js";
-import { CreateCommentRequest, AuthRequest } from "../types/index.js";
+import { CreateCommentRequest } from "../types/index.js";
 
 export const createComment = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
+    console.log("💬 [COMMENT] Create comment request received");
     const { content, author, postId }: CreateCommentRequest = req.body;
 
     if (!content || !author) {
@@ -22,25 +23,33 @@ export const createComment = async (
       post: postId,
     });
 
+    console.log(`💾 [DB WRITE] Saving comment to MongoDB...`);
     const savedComment = await newComment.save();
+    console.log(`✅ [DB WRITE SUCCESS] Comment saved with ID: ${savedComment._id}`);
 
+    console.log(`📬 [DB UPDATE] Adding comment to post ${postId}...`);
     await Post.findByIdAndUpdate(postId, {
       $push: { comments: savedComment },
     });
+    console.log(`✅ [DB UPDATE SUCCESS] Post ${postId} updated with new comment`);
 
     res.json(savedComment);
     res.status(201);
   } catch (err) {
+    console.error("❌ [COMMENT ERROR] Failed to create comment:", (err as Error).message);
     res.status(409).json({ error: (err as Error).message });
   }
 };
 
 export const allComments = async (req: Request, res: Response): Promise<void> => {
   try {
+    console.log(`📬 [DB QUERY] Fetching all comments for post ${req.params.id}...`);
     const post = await Post.findById(req.params.id).populate("comments");
+    console.log(`✅ [DB SUCCESS] Retrieved ${post?.comments?.length || 0} comments`);
 
     res.status(200).json(post?.comments);
   } catch (error) {
+    console.error("❌ [COMMENT ERROR] Failed to fetch comments:", (error as Error).message);
     res.status(404).json({ message: (error as Error).message });
   }
 };
@@ -86,13 +95,13 @@ export const deleteComment = async (
   }
 };
 
-export const likeComment = async (req: Request, res: Response): Promise<void> => {
+export const likeComment = async (_req: Request, res: Response): Promise<void> => {
   // TODO: Implement like functionality for comments
   res.json({ message: "Not yet implemented" });
 };
 
 export const dislikeComment = async (
-  req: Request,
+  _req: Request,
   res: Response
 ): Promise<void> => {
   // TODO: Implement dislike functionality for comments

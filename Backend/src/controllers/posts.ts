@@ -5,6 +5,7 @@ import { CreatePostRequest, AuthRequest } from "../types/index.js";
 
 export const createPost = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
+    console.log("📝 [POST] Create post request received");
     const { title, content }: CreatePostRequest = req.body;
 
     if (!title || !content) {
@@ -12,12 +13,15 @@ export const createPost = async (req: AuthRequest, res: Response): Promise<void>
       return;
     }
 
+    console.log(`📬 [DB QUERY] Checking if post with title "${title}" exists...`);
     const existingPost = await Post.findOne({ title });
 
     if (existingPost) {
+      console.log(`⚠️  [DB RESULT] Post with title "${title}" already exists`);
       res.status(404).json({ message: "Title with this name exist." });
       return;
     }
+    console.log(`✅ [DB RESULT] Title is available`);
 
     const newPost = new Post({
       title,
@@ -26,11 +30,15 @@ export const createPost = async (req: AuthRequest, res: Response): Promise<void>
       author: req.user,
     });
 
+    console.log(`💾 [DB WRITE] Saving post to MongoDB: "${title}"...`);
     const savedPost = await newPost.save();
+    console.log(`✅ [DB WRITE SUCCESS] Post saved with ID: ${savedPost._id}`);
 
+    console.log(`📬 [DB UPDATE] Adding post to user ${req.user}...`);
     await User.findByIdAndUpdate(req.user, {
       $push: { posts: savedPost },
     });
+    console.log(`✅ [DB UPDATE SUCCESS] User ${req.user} updated with new post`);
 
     res.status(201).json(savedPost);
   } catch (error) {
@@ -38,12 +46,15 @@ export const createPost = async (req: AuthRequest, res: Response): Promise<void>
   }
 };
 
-export const allPosts = async (req: Request, res: Response): Promise<void> => {
+export const allPosts = async (_req: Request, res: Response): Promise<void> => {
   try {
+    console.log("📬 [DB QUERY] Fetching all posts from MongoDB...");
     const getAllPosts = await Post.find().populate("author", "_id username");
+    console.log(`✅ [DB SUCCESS] Retrieved ${getAllPosts.length} posts from database`);
 
     res.status(200).json(getAllPosts);
   } catch (error) {
+    console.error("❌ [DB ERROR] Failed to fetch posts:", (error as Error).message);
     res.status(404).json({ message: (error as Error).message });
   }
 };
@@ -59,7 +70,6 @@ export const getPost = async (req: Request, res: Response): Promise<void> => {
 
 export const editPost = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { title, content } = req.body;
     const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });

@@ -16,13 +16,19 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Request logging middleware
+app.use((req, _res, next) => {
+  console.log(`🌐 [API REQUEST] ${req.method} ${req.path} from ${req.ip}`);
+  next();
+});
+
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/comments", commentRoutes);
 
 // Health check
-app.get("/health", (req, res) => {
+app.get("/health", (_req, res) => {
   res.json({ status: "Server is running" });
 });
 

@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./features/authSlice.js";
-import errorAuthReducer from "./features/errorAuthSlice.js";
-import postsReducer from "./features/postsSlice.js";
-import { authApi } from "./services/authApi.js";
-import { postApi } from "./services/postApi.js";
+import authReducer from "../features/auth/authSlice.js";
+import errorAuthReducer from "../features/auth/errorAuthSlice.js";
+import postsReducer from "../features/forum/slices/postsSlice.js";
+import { authApi } from "../features/auth/authApi.js";
+import { postApi } from "../features/forum/api/postsApi.js";
 
 export const store = configureStore({
   reducer: {
